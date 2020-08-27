@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      JQuery
+    </title>
+  </head>
+  <body>
+    <h1>DEMO JQuery!</h1>
+    <div id="respuesta">
+      <!-- Aqui imprimimos los datos que nos lleguen de la API -->
+    </div>
+    <button type="button" id="btnAgregar">Agregar</button>
+
+    <!-- Libreria de JQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- JQuery -->
+    <script>
+      let index = 1;
+      let url = `https://jsonplaceholder.typicode.com/photos/${index}`;
+      $("#btnAgregar").click(function () {
+        $.get(url, function (data) {
+          //Inyectamos en el DOM los datos que recibimos de la API...
+          let img = document.createElement("img");
+          img.src = data.url;
+          $("#respuesta").append(img);
+          let titulo = document.createElement("h3");
+          titulo.innerHTML = data.title;
+          $("#respuesta").append(titulo);
+          index++;
+        });
+      });
+    </script>
+  </body>
+</html>
